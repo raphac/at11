@@ -1,9 +1,7 @@
-let fs = require('fs'),
-        PDFParser = require("pdf2json");
+let PDFParser = require("pdf2json");
  
-    var request = require('request');
+var request = require('request');
 
-var cheerio = require('cheerio');
 require('./parserUtil');
 
 module.exports.parse = function(html, date, callback) {

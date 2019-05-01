@@ -26,7 +26,7 @@ module.exports.parse = function(html, date, callback) {
         }
 
         if (found !== undefined) {
-            var prices = found.nodeValue.split("/")
+            var prices = found.nodeValue.split("/");
             var price = parseFloat(prices[prices.length - 1].replace("CHF", "").trim());
             dayMenu.push({ isSoup: false, text: text, price: price });
         }
