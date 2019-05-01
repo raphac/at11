@@ -87,7 +87,7 @@ module.exports.fetchMenu = function(url, date, postParams, parseCallback, doneCa
                                 {
                                     throw "Menu item has wrong 'price' property (" + typeof item.price + ")";
                                 }
-                                item.price = isNaN(item.price) ? "" : item.price.toFixed(2).replace(".", ",") + " €"; //convert to presentable form
+                                item.price = isNaN(item.price) ? "" : item.price.toFixed(2) + " CHF"; //convert to presentable form
                             });
                             done(null, menu);
                         }

@@ -54,8 +54,8 @@ hbs.registerPartials(__dirname + '/views/partials');
 console.log("Done");
 
 console.log("Global setup...");
-moment.locale('sk');
-moment.tz.setDefault("Europe/Bratislava");
+moment.locale('de');
+moment.tz.setDefault("Europe/Zurich");
 console.log("Done");
 
 console.log("Express setup...");
@@ -65,7 +65,7 @@ app.engine('html', hbs.__express);
 app.use(express.static('static'));
 app.get('/', function(req, res) {
     res.setHeader('Content-Type', 'text/html; charset=UTF-8');
-    res.setHeader('Content-Language', 'sk');
+    res.setHeader('Content-Language', 'de');
     res.render('../views/index.html', { restaurants: config.restaurants });
 });
 app.get('/menu/:id/:day', function(req, res) {

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <title>@11</title>
     <link rel="icon" type="image/x-icon" href="/img/favicon_at11.ico" />
-    <meta name="description" content="Obedové menu pri ERNI SK">
+    <meta name="description" content="Mittagsmenü rund ums PULS 5">
     <link href="css/css3timepiece-at11.css" type="text/css"  rel="stylesheet" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
@@ -31,7 +31,7 @@
                 </div>
 
                 <div id="denne-menu" class="col-xs-4 col-md-3 first-row">
-                    <h1>Denné menu</h1>
+                    <h1>Tagesmenü</h1>
                 </div>
 
                 <div class="col-xs-1 visible-xs">
@@ -41,12 +41,12 @@
             <div id="selection">
                 <ul id="restauracie" class="nav nav-pills pull-right">
                     <li class="label">
-                        <a id="selectRestaurant" role="button" data-toggle="dropdown" href="#" class="second-row-button">Vybrať reštauráciu
+                        <a id="selectRestaurant" role="button" data-toggle="dropdown" href="#" class="second-row-button">Wählen Sie ein Restaurant aus
                             <b class="caret"></b>
                         </a>
                         <ul id="selectrestaurants" class="dropdown" role="menu" aria-labelledby="selectrestaurants">
                             <li role="presentation" class="dropdown-checkbox">
-                                {{> selectrestaurants6}}
+                                {{selectrestaurants}}
                             </li>
                         </ul>
                     </li>
@@ -70,8 +70,8 @@
         <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" style="font-size: 15px;">
             <div class="container-fluid">
                 <div class="navigation-info alert alert-warning visible-md visible-lg row">
-                    <b>Tip:</b> na navigáciu medzi reštauráciami môžete použiť šípky <i>HORE</i>
-                    a <i>DOLE</i>, <i>ENTER</i> alebo druhé kliknutie na reštauráciu otvorí web vybranej reštaurácie.
+                    <b>Tip:</b> Sie können die Pfeile <i>NACH OBEN</i> verwenden, um zwischen Restaurants zu navigieren
+                                         und <i>NACH UNTEN</i>, <i>ENTER</i> oder ein zweiter Klick auf das Restaurant öffnet die Website des ausgewählten Restaurants.
                 </div>
                 <div class="row well" style="margin-bottom: 0px;">
                     <div class="col-xs-6">
@@ -80,7 +80,7 @@
                         ALL WRONGS RESERVED
                     </div>
                     <div class="col-xs-1 col-xs-offset-5">
-                        <a style="float: right" href="https://github.com/at11/at11/issues" target="_blank"
+                        <a style="float: right" href="https://github.com/raphac/at11/issues" target="_blank"
                             class="github"><i class="fa fa-github fa-lg"></i> GitHub</a>
                     </div>
                     <p>

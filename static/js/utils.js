@@ -27,7 +27,7 @@ function loadMenus(container) {
         var section = $(this);
         var restaurantId = section.data("restaurantId");
 
-        var errElem = "<li class='error'><span>Nepodarilo sa načítať menu, skús pozrieť priamo na stránke reštaurácie</span></li>";
+        var errElem = "<li class='error'><span>Das Menü kann nicht geladen werden. Versuchen Sie, direkt auf der Restaurantseite zu suchen.</span></li>";
         var listElem = $("<ul></ul>");
         var refreshElem = null;
         $.ajax("/menu/" + restaurantId + "/" + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate())
@@ -66,10 +66,10 @@ function loadMenus(container) {
 
 function getDateCompound() {
     var date = new Date();
-    var desc = "dnes";
+    var desc = "heute";
     if(date.getHours() >= 15) {
         date.setDate(date.getDate() + 1);
-        desc = "zajtra";
+        desc = "morgen";
     }
     return { date: date, description: desc + " " + date.toLocaleDateString() };
 }
