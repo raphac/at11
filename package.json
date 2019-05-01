@@ -18,7 +18,7 @@
     "mocha": "^5.2.0"
   },
   "scripts": {
-    "build": "nyc --reporter=cobertura --reporter=html ./node_modules/.bin/mocha tests/**/*.js --reporter mocha-junit-reporter --reporter-options mochaFile=./TEST-RESULTS.xml",
+    "build": "",
     "start": "node app.js",
     "pretest": "jshint --verbose app.js cache.js config.js menuFetcher.js parsers/ static/js/",
     "test": "mocha --reporter spec --exit",
