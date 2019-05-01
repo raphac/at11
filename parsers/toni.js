@@ -14,15 +14,14 @@ module.exports.parse = function(html, date, callback) {
         var text = "";
         for (var i = 0; i < elem.children.length; i++) {
             var tableChild = elem.children[i];
-            if (tableChild.nodeValue === undefined || tableChild.nodeValue === null) {
-
-            }
-            else if (tableChild.nodeValue.includes("CHF")) {
-              found = tableChild;
-              break;
-            } else {
-                text += normalize(tableChild.nodeValue) + " ";
-            }
+            if (tableChild.nodeValue !== undefined || tableChild.nodeValue !== null) {
+                if (tableChild.nodeValue.includes("CHF")) {
+                    found = tableChild;
+                    break;
+                } else {
+                    text += normalize(tableChild.nodeValue) + " ";
+                }
+            } 
         }
 
         if (found !== undefined) {

@@ -16,16 +16,15 @@ module.exports.parse = function(html, date, callback) {
         for (var i = 0; i < children.length; i++) {
             var tableChild = children[i];
             var nodeValue = tableChild.nodeValue;
-            if (nodeValue === undefined || nodeValue === null) {
-
-            }
-            else if (nodeValue.includes("CHF")) {
-              found = tableChild;
-              break;
-            } else {
-                var t = nodeValue.trim();
-                if (t) {
-                    text += normalize(t) + " ";
+            if (nodeValue !== undefined && nodeValue !== null) {
+                if (nodeValue.includes("CHF")) {
+                    found = tableChild;
+                    break;
+                } else {
+                    var t = nodeValue.trim();
+                    if (t) {
+                        text += normalize(t) + " ";
+                    }
                 }
             }
         }
@@ -45,7 +44,7 @@ module.exports.parse = function(html, date, callback) {
             .removeItemNumbering();
     }
 
-    function allDescendants (node, children) {
+    function allDescendants(node, children) {
         if (node.childNodes !== null) {
             for (var i = 0; i < node.childNodes.length; i++) {
                 var child = node.childNodes[i];

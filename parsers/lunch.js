@@ -4,7 +4,6 @@ var request = require('request');
 require('./parserUtil');
 
 module.exports.parse = function(html, date, callback) {
-
     let dayMenu = [];
     if (date.day() < 1 || date.day() > 5) {
         callback([]);
@@ -87,8 +86,8 @@ module.exports.parse = function(html, date, callback) {
 
     let pdfFilePath = `http://www.lunch-5.ch/uploads/menuplan.pdf`;
     let pdfParser = new PDFParser();
-    let pdfPipe = request({url: pdfFilePath, encoding:null}).pipe(pdfParser);
-    pdfPipe.on("pdfParser_dataError", errData => console.error(errData.parserError) );
+    let pdfPipe = request({ url: pdfFilePath, encoding: null }).pipe(pdfParser);
+    pdfPipe.on("pdfParser_dataError", errData => console.error(errData.parserError));
     pdfPipe.on("pdfParser_dataReady", pdfData => {
             let texts = pdfData.formImage.Pages[0].Texts;
             let groupedByColumn = groupBy(texts, text => columnIndex(text.x));
@@ -110,7 +109,7 @@ module.exports.parse = function(html, date, callback) {
     
                         let price = parseFloat(decodeURIComponent(menuLines[menuLines.length - 1].R[0].T).replace("Fr.", "").replace("Fr", "").trim());
                         dayMenu.push({ isSoup: false, text: text, price: price });
-                    } 
+                    }
                 }
             });
 
@@ -132,11 +131,10 @@ module.exports.parse = function(html, date, callback) {
     
                         let price = parseFloat(decodeURIComponent(menuLines[menuLines.length - 1].R[0].T).replace("Fr.", "").replace("Fr", "").trim());
                         dayMenu.push({ isSoup: false, text: text, price: price });
-                    } 
+                    }
                 }
             });
             callback(dayMenu);
-
         });
 
     function normalize(str) {

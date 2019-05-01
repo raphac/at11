@@ -5,10 +5,9 @@ var request = require('request');
 require('./parserUtil');
 
 module.exports.parse = function(html, date, callback) {
-
     function getWeekNumber(d) {
         let onejan = new Date(d.getFullYear(), 0, 1);
-        return Math.ceil( (((d - onejan) / 86400000) + onejan.getDay() + 1) / 7 );
+        return Math.ceil((((d - onejan) / 86400000) + onejan.getDay() + 1) / 7);
     }
     
     var dayMenu = [];
@@ -69,8 +68,8 @@ module.exports.parse = function(html, date, callback) {
 
     var pdfFilePath = `https://www.topolino-herdern.ch/files/MenuplanKW${getWeekNumber(date.toDate())}.pdf`;
     let pdfParser = new PDFParser();
-    var pdfPipe = request({url: pdfFilePath, encoding:null}).pipe(pdfParser);
-    pdfPipe.on("pdfParser_dataError", errData => console.error(errData.parserError) );
+    var pdfPipe = request({ url: pdfFilePath, encoding: null }).pipe(pdfParser);
+    pdfPipe.on("pdfParser_dataError", errData => console.error(errData.parserError));
     pdfPipe.on("pdfParser_dataReady", pdfData => {
             var texts = pdfData.formImage.Pages[0].Texts;
             var groupedByColumn = groupBy(texts, text => columnIndex(text.x));
@@ -92,11 +91,10 @@ module.exports.parse = function(html, date, callback) {
     
                         var price = parseFloat(decodeURIComponent(menuLines[menuLines.length - 1].R[0].T).replace("CHF", "").trim());
                         dayMenu.push({ isSoup: false, text: text, price: price });
-                    } 
+                    }
                 }
             });
             callback(dayMenu);
-
         });
 
     function normalize(str) {
