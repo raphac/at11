@@ -21,7 +21,7 @@ module.exports.parse = function(html, date, callback) {
                 } else {
                     text += normalize(tableChild.nodeValue) + " ";
                 }
-            } 
+            }
         }
 
         if (found !== undefined) {
