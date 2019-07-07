@@ -31,17 +31,17 @@ module.exports.parse = function(html, date, callback) {
     }
 
     function columnIndex(x) {
-        if (x < 10) {
+        if (x < 10.3) {
             return 0;
-        } else if (x < 17) {
+        } else if (x < 17.5) {
             return 1;
-        } else if (x < 24) {
+        } else if (x < 25.2) {
             return 2;
-        } else if (x < 31) {
+        } else if (x < 32.8) {
             return 3;
-        } else if (x < 38) {
+        } else if (x < 40.1) {
             return 4;
-        } else if (x < 45) {
+        } else if (x < 47.4) {
             return 5;
         }
 
@@ -49,17 +49,17 @@ module.exports.parse = function(html, date, callback) {
     }
 
     function rowIndex(y) {
-        if (y < 6) {
+        if (y < 8.4) {
             return -1;
-        } else if (y < 11) {
+        } else if (y < 12.5) {
             return 0;
-        } else if (y < 15.8) {
+        } else if (y < 16.9) {
             return 1;
-        } else if (y < 20.5) {
+        } else if (y < 21.4) {
             return 2;
-        } else if (y < 25) {
+        } else if (y < 25.7) {
             return 3;
-        } else if (y < 29.5) {
+        } else if (y < 29.2) {
             return 4;
         }
 
@@ -82,14 +82,23 @@ module.exports.parse = function(html, date, callback) {
                     menuLines.sort((a,b) => a.y - b.y);
                     if (menuLines.length > 1) {
                         var text = '';
-                        for (let index = 0; index < menuLines.length - 1; index++) {
+                        var priceIndex = -1;
+                        for (let index = 0; index < menuLines.length; index++) {
                             const element = menuLines[index].R[0];
                             if (element.T !== undefined) {
-                                text += normalize(decodeURIComponent(element.T)) + " ";
+                                if (element.T.includes("CHF")) {
+                                    priceIndex = index;
+                                } else {
+                                    text += normalize(decodeURIComponent(element.T)) + " ";
+                                }
                             }
                         }
     
-                        var price = parseFloat(decodeURIComponent(menuLines[menuLines.length - 1].R[0].T).replace("CHF", "").trim());
+                        var price = 0;
+                        if (priceIndex > 0) {
+                            price = parseFloat(decodeURIComponent(menuLines[priceIndex].R[0].T).replace("CHF", "").trim());
+                        }
+
                         dayMenu.push({ isSoup: false, text: text, price: price });
                     }
                 }
