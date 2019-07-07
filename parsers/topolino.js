@@ -78,30 +78,34 @@ module.exports.parse = function(html, date, callback) {
             var rows = groupBy(dayColumn, text => rowIndex(text.y));
 
             rows.forEach(function(menuLines,key) {
-                if (key !== -1) {
-                    menuLines.sort((a,b) => a.y - b.y);
-                    if (menuLines.length > 1) {
-                        var text = '';
-                        var priceIndex = -1;
-                        for (let index = 0; index < menuLines.length; index++) {
-                            const element = menuLines[index].R[0];
-                            if (element.T !== undefined) {
-                                if (element.T.includes("CHF")) {
-                                    priceIndex = index;
-                                } else {
-                                    text += normalize(decodeURIComponent(element.T)) + " ";
-                                }
-                            }
-                        }
-    
-                        var price = 0;
-                        if (priceIndex > 0) {
-                            price = parseFloat(decodeURIComponent(menuLines[priceIndex].R[0].T).replace("CHF", "").trim());
-                        }
+                if (key === -1) {
+                    return;
+                }
 
-                        dayMenu.push({ isSoup: false, text: text, price: price });
+                if (menuLines.length <= 1) {
+                    return;
+                }
+
+                menuLines.sort((a,b) => a.y - b.y);
+                var text = '';
+                var priceIndex = -1;
+                for (let index = 0; index < menuLines.length; index++) {
+                    const element = menuLines[index].R[0];
+                    if (element.T !== undefined) {
+                        if (element.T.includes("CHF")) {
+                            priceIndex = index;
+                        } else {
+                            text += normalize(decodeURIComponent(element.T)) + " ";
+                        }
                     }
                 }
+
+                var price = 0;
+                if (priceIndex > 0) {
+                    price = parseFloat(decodeURIComponent(menuLines[priceIndex].R[0].T).replace("CHF", "").trim());
+                }
+
+                dayMenu.push({ isSoup: false, text: text, price: price });
             });
             callback(dayMenu);
         });
