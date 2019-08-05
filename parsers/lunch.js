@@ -25,17 +25,17 @@ module.exports.parse = function(html, date, callback) {
     }
 
     function columnIndex(x) {
-        if (x < 8.4) {
+        if (x < 6.5) {
             return 0;
-        } else if (x < 16) {
+        } else if (x < 14.6) {
             return 1;
-        } else if (x < 24) {
+        } else if (x < 23.1) {
             return 2;
-        } else if (x < 31.5) {
+        } else if (x < 31.3) {
             return 3;
-        } else if (x < 39.5) {
+        } else if (x < 39.8) {
             return 4;
-        } else if (x < 47.5) {
+        } else if (x < 47.8) {
             return 5;
         }
 
@@ -49,7 +49,7 @@ module.exports.parse = function(html, date, callback) {
             return 0;
         } else if (y < 20.5) {
             return 1;
-        } else if (y < 25.1) {
+        } else if (y < 25.3) {
             return 2;
         }
 
@@ -57,9 +57,9 @@ module.exports.parse = function(html, date, callback) {
     }
 
     function columnIndexAllDays(x) {
-        if (x < 8.4) {
+        if (x < 6.5) {
             return 0;
-        } else if (x < 48) {
+        } else if (x < 47.8) {
             return 1;
         }
 
@@ -67,17 +67,17 @@ module.exports.parse = function(html, date, callback) {
     }
 
     function rowIndexAllDays(y) {
-        if (y < 25.1) {
+        if (y < 26.4) {
             return -1;
-        } else if (y < 26.7) {
+        } else if (y < 27.6) {
             return 0;
-        } else if (y < 27.8) {
+        } else if (y < 28.9) {
             return 1;
-        } else if (y < 29) {
+        } else if (y < 30) {
             return 2;
-        } else if (y < 29.9) {
-            return 3;
         } else if (y < 31) {
+            return 3;
+        } else if (y < 32) {
             return 4;
         }
 
